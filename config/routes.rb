@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :posts, only: [:index]
+  get :posts, to: 'posts#index'
 end

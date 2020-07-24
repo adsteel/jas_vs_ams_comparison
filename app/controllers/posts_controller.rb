@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
   def index
-    render json: Post.all
+    options = {
+      include: ['user', 'comments']
+    }
+
+    render json: JasPostSerializer.new(Post.all, options)
   end
 end
