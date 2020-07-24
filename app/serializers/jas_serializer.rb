@@ -1,3 +1,3 @@
 class JasSerializer
-  include JSONAPI::Serializer
+  # include JSONAPI::Serializer
 end

@@ -4,6 +4,8 @@ class PostsController < ApplicationController
       include: ['user', 'comments']
     }
 
-    render json: JasPostSerializer.new(Post.all, options)
+    render json: Post.all,
+           each_serializer: AmsPostSerializer,
+           include: options[:include]
   end
 end

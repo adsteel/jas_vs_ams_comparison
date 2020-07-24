@@ -8,7 +8,7 @@ RSpec.describe 'serializer benchmarks' do
   before(:all) { GC.disable }
   after(:all) { GC.enable }
 
-  it 'fast_jsonapi 1.5' do
+  it 'AMS 0.10.10' do
     # setup
     ping_n = 100
     posts_n = 25
@@ -31,17 +31,17 @@ RSpec.describe 'serializer benchmarks' do
       expect(datum.dig('relationships', 'comments', 'data').size).to eq(comments_n)
     end
 
-    expect(json['included'].map { |obj| obj['type'] }.uniq).to contain_exactly('jas_user', 'jas_comment')
+    expect(json['included'].map { |obj| obj['type'] }.uniq).to contain_exactly('users', 'comments')
 
-    included_users = json['included'].select { |obj| obj['type'] == 'jas_user' }
+    included_users = json['included'].select { |obj| obj['type'] == 'users' }
     expect(included_users.size).to eq(posts_n)
     expect(included_users.first.keys).to contain_exactly('id', 'type', 'attributes')
     expect(included_users.first['attributes'].keys).to contain_exactly('email', 'name')
 
-    included_comments = json['included'].select { |obj| obj['type'] == 'jas_comment' }
+    included_comments = json['included'].select { |obj| obj['type'] == 'comments' }
     expect(included_comments.size).to eq(posts_n * comments_n)
     expect(included_comments.first.keys).to contain_exactly('id', 'type', 'attributes')
-    expect(included_comments.first['attributes'].keys).to contain_exactly('body', 'post_id')
+    expect(included_comments.first['attributes'].keys).to contain_exactly('body', 'post-id')
 
     # benchmark
     real = Benchmark.measure { ping_n.times { ping } }.real

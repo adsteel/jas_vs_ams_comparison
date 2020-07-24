@@ -1,2 +1,2 @@
-class AmsSerializer #< ActiveModel::Serializer
+class AmsSerializer < ActiveModel::Serializer
 end
