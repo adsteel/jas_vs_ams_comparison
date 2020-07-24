@@ -1,5 +1,5 @@
 {
-  "name": "fast_jsonapi_comparison",
+  "name": "jas_vs_ams_comparison",
   "private": true,
   "dependencies": {
     "@rails/ujs": "^6.0.0"
