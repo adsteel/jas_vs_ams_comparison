@@ -65,3 +65,7 @@ bundle exec rspec spec
 git checkout vams
 bundle exec rspec spec
 ```
+
+## Contributing
+
+Issues, improvements and expansions welcomed, just be nice, please.
